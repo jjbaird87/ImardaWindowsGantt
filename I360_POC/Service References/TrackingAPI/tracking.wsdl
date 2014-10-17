@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://i360api.imardainc.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://i360api.imardainc.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://i360api.imardainc.com/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetCommandList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCommandListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCommandListResult" type="tns:ResponseOfListOfi360Command" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfListOfi360Command">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="tns:ArrayOfI360Command" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ResponseCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Fail" />
+          <s:enumeration value="OK" />
+          <s:enumeration value="Unauthorized" />
+          <s:enumeration value="Invalid" />
+          <s:enumeration value="Duplicate" />
+          <s:enumeration value="Obsolete" />
+          <s:enumeration value="NoAccess" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfI360Command">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="i360Command" nillable="true" type="tns:i360Command" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="i360Command">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Command" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeviceType" type="tns:i360DeviceType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="i360DeviceType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="V300" />
+          <s:enumeration value="NavmanQUBE" />
+          <s:enumeration value="eRoad" />
+          <s:enumeration value="SmartPhone" />
+          <s:enumeration value="ORION" />
+          <s:enumeration value="XIRGO" />
+          <s:enumeration value="GlobalStar" />
+          <s:enumeration value="Calamp" />
+          <s:enumeration value="Starlink" />
+          <s:enumeration value="V300_336_GX_000" />
+          <s:enumeration value="V300_336_GX_002" />
+          <s:enumeration value="V300_336_HX_002" />
+          <s:enumeration value="QUBE" />
+          <s:enumeration value="QUBE_2" />
+          <s:enumeration value="QUBE_UNKNOWN" />
+          <s:enumeration value="EHubo" />
+          <s:enumeration value="Tubo" />
+          <s:enumeration value="iPhone" />
+          <s:enumeration value="V300_336_GWP_012" />
+          <s:enumeration value="Intermec" />
+          <s:enumeration value="Android" />
+          <s:enumeration value="V200" />
+          <s:enumeration value="V200_3G" />
+          <s:enumeration value="V200_EXT" />
+          <s:enumeration value="V200_EXT_3G" />
+          <s:enumeration value="V220" />
+          <s:enumeration value="V220_3G" />
+          <s:enumeration value="V300_336_XWP_012" />
+          <s:enumeration value="V300_336_HWP_002" />
+          <s:enumeration value="V301_336_GW_030" />
+          <s:enumeration value="V301_336_IW_030" />
+          <s:enumeration value="V301_336_GX_030" />
+          <s:enumeration value="V301_336_IX_030" />
+          <s:enumeration value="Virtual" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetCommandListByDeviceType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="deviceType" type="tns:i360DeviceType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCommandListByDeviceTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCommandListByDeviceTypeResult" type="tns:ResponseOfListOfi360Command" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendCommand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="command" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendCommandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendCommandResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTripListByDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripListByDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTripListByDateRangeResult" type="tns:ResponseOfListOfi360Trip" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfListOfi360Trip">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="tns:ArrayOfI360Trip" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfI360Trip">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="i360Trip" nillable="true" type="tns:i360Trip" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="i360Trip">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Start" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Finish" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Closed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Distance" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Duration" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndLocation" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NrEvents" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTrackableList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTrackableListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTrackableListResult" type="tns:ResponseOfListOfi360Trackable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfListOfi360Trackable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="tns:ArrayOfI360Trackable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfI360Trackable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="i360Trackable" nillable="true" type="tns:i360Trackable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="i360Trackable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrackID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastUpdate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastLocation" type="tns:i360Location" />
+          <s:element minOccurs="1" maxOccurs="1" name="MDTOnline" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OwnerID" type="s1:guid" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="i360Location">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Latitude" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Longitude" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Direction" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Speed" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocationDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Ignition" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Geofence" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTrackableListByTrackIDList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackIDList" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTrackableListByTrackIDListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTrackableListByTrackIDListResult" type="tns:ResponseOfListOfi360Trackable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTrackableListByFleetID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="fleetID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTrackableListByFleetIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTrackableListByFleetIDResult" type="tns:ResponseOfListOfi360Trackable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AcceptRequestToBeTracked">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="deviceID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AcceptRequestToBeTrackedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AcceptRequestToBeTrackedResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendRequestToTrack">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="deviceID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendRequestToTrackResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendRequestToTrackResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePosition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="seqnum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="latitude" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="longitude" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="direction" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="speed" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePositionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatePositionResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendPosition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="seqnum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="latitude" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="longitude" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="direction" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="speed" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="time" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendPositionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendPositionResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVersionResult" type="tns:ResponseOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfString">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCodeVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCodeVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCodeVersionResult" type="tns:ResponseOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCommandListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCommandList" />
+  </wsdl:message>
+  <wsdl:message name="GetCommandListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCommandListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCommandListByDeviceTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCommandListByDeviceType" />
+  </wsdl:message>
+  <wsdl:message name="GetCommandListByDeviceTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCommandListByDeviceTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendCommandSoapIn">
+    <wsdl:part name="parameters" element="tns:SendCommand" />
+  </wsdl:message>
+  <wsdl:message name="SendCommandSoapOut">
+    <wsdl:part name="parameters" element="tns:SendCommandResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTripListByDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTripListByDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetTripListByDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTripListByDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTrackableListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTrackableList" />
+  </wsdl:message>
+  <wsdl:message name="GetTrackableListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTrackableListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTrackableListByTrackIDListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTrackableListByTrackIDList" />
+  </wsdl:message>
+  <wsdl:message name="GetTrackableListByTrackIDListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTrackableListByTrackIDListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTrackableListByFleetIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTrackableListByFleetID" />
+  </wsdl:message>
+  <wsdl:message name="GetTrackableListByFleetIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTrackableListByFleetIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="AcceptRequestToBeTrackedSoapIn">
+    <wsdl:part name="parameters" element="tns:AcceptRequestToBeTracked" />
+  </wsdl:message>
+  <wsdl:message name="AcceptRequestToBeTrackedSoapOut">
+    <wsdl:part name="parameters" element="tns:AcceptRequestToBeTrackedResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendRequestToTrackSoapIn">
+    <wsdl:part name="parameters" element="tns:SendRequestToTrack" />
+  </wsdl:message>
+  <wsdl:message name="SendRequestToTrackSoapOut">
+    <wsdl:part name="parameters" element="tns:SendRequestToTrackResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePositionSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePosition" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePositionSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendPositionSoapIn">
+    <wsdl:part name="parameters" element="tns:SendPosition" />
+  </wsdl:message>
+  <wsdl:message name="SendPositionSoapOut">
+    <wsdl:part name="parameters" element="tns:SendPositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCodeVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCodeVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetCodeVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCodeVersionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TrackingAPISoap">
+    <wsdl:operation name="GetCommandList">
+      <wsdl:input message="tns:GetCommandListSoapIn" />
+      <wsdl:output message="tns:GetCommandListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommandListByDeviceType">
+      <wsdl:input message="tns:GetCommandListByDeviceTypeSoapIn" />
+      <wsdl:output message="tns:GetCommandListByDeviceTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendCommand">
+      <wsdl:input message="tns:SendCommandSoapIn" />
+      <wsdl:output message="tns:SendCommandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTripListByDateRange">
+      <wsdl:input message="tns:GetTripListByDateRangeSoapIn" />
+      <wsdl:output message="tns:GetTripListByDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackableList">
+      <wsdl:input message="tns:GetTrackableListSoapIn" />
+      <wsdl:output message="tns:GetTrackableListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackableListByTrackIDList">
+      <wsdl:input message="tns:GetTrackableListByTrackIDListSoapIn" />
+      <wsdl:output message="tns:GetTrackableListByTrackIDListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackableListByFleetID">
+      <wsdl:input message="tns:GetTrackableListByFleetIDSoapIn" />
+      <wsdl:output message="tns:GetTrackableListByFleetIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AcceptRequestToBeTracked">
+      <wsdl:input message="tns:AcceptRequestToBeTrackedSoapIn" />
+      <wsdl:output message="tns:AcceptRequestToBeTrackedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendRequestToTrack">
+      <wsdl:input message="tns:SendRequestToTrackSoapIn" />
+      <wsdl:output message="tns:SendRequestToTrackSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePosition">
+      <wsdl:input message="tns:UpdatePositionSoapIn" />
+      <wsdl:output message="tns:UpdatePositionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendPosition">
+      <wsdl:input message="tns:SendPositionSoapIn" />
+      <wsdl:output message="tns:SendPositionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <wsdl:input message="tns:GetVersionSoapIn" />
+      <wsdl:output message="tns:GetVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeVersion">
+      <wsdl:input message="tns:GetCodeVersionSoapIn" />
+      <wsdl:output message="tns:GetCodeVersionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TrackingAPISoap" type="tns:TrackingAPISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCommandList">
+      <soap:operation soapAction="http://i360api.imardainc.com/GetCommandList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommandListByDeviceType">
+      <soap:operation soapAction="http://i360api.imardainc.com/GetCommandListByDeviceType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendCommand">
+      <soap:operation soapAction="http://i360api.imardainc.com/SendCommand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripListByDateRange">
+      <soap:operation soapAction="http://i360api.imardainc.com/GetTripListByDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackableList">
+      <soap:operation soapAction="http://i360api.imardainc.com/GetTrackableList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackableListByTrackIDList">
+      <soap:operation soapAction="http://i360api.imardainc.com/GetTrackableListByTrackIDList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackableListByFleetID">
+      <soap:operation soapAction="http://i360api.imardainc.com/GetTrackableListByFleetID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptRequestToBeTracked">
+      <soap:operation soapAction="http://i360api.imardainc.com/AcceptRequestToBeTracked" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendRequestToTrack">
+      <soap:operation soapAction="http://i360api.imardainc.com/SendRequestToTrack" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePosition">
+      <soap:operation soapAction="http://i360api.imardainc.com/UpdatePosition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPosition">
+      <soap:operation soapAction="http://i360api.imardainc.com/SendPosition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <soap:operation soapAction="http://i360api.imardainc.com/GetVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeVersion">
+      <soap:operation soapAction="http://i360api.imardainc.com/GetCodeVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TrackingAPISoap12" type="tns:TrackingAPISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCommandList">
+      <soap12:operation soapAction="http://i360api.imardainc.com/GetCommandList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommandListByDeviceType">
+      <soap12:operation soapAction="http://i360api.imardainc.com/GetCommandListByDeviceType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendCommand">
+      <soap12:operation soapAction="http://i360api.imardainc.com/SendCommand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripListByDateRange">
+      <soap12:operation soapAction="http://i360api.imardainc.com/GetTripListByDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackableList">
+      <soap12:operation soapAction="http://i360api.imardainc.com/GetTrackableList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackableListByTrackIDList">
+      <soap12:operation soapAction="http://i360api.imardainc.com/GetTrackableListByTrackIDList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackableListByFleetID">
+      <soap12:operation soapAction="http://i360api.imardainc.com/GetTrackableListByFleetID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptRequestToBeTracked">
+      <soap12:operation soapAction="http://i360api.imardainc.com/AcceptRequestToBeTracked" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendRequestToTrack">
+      <soap12:operation soapAction="http://i360api.imardainc.com/SendRequestToTrack" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePosition">
+      <soap12:operation soapAction="http://i360api.imardainc.com/UpdatePosition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPosition">
+      <soap12:operation soapAction="http://i360api.imardainc.com/SendPosition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <soap12:operation soapAction="http://i360api.imardainc.com/GetVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeVersion">
+      <soap12:operation soapAction="http://i360api.imardainc.com/GetCodeVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TrackingAPI">
+    <wsdl:port name="TrackingAPISoap" binding="tns:TrackingAPISoap">
+      <soap:address location="http://209.81.83.141:99/14.2/tracking/tracking.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TrackingAPISoap12" binding="tns:TrackingAPISoap12">
+      <soap12:address location="http://209.81.83.141:99/14.2/tracking/tracking.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

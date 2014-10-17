@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://i360api.imardainc.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://i360api.imardainc.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://i360api.imardainc.com/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="CurrentServerTime">
+        <s:complexType />
+      </s:element>
+      <s:element name="CurrentServerTimeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentServerTimeResult" type="tns:ResponseOfDateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfDateTime">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ResponseCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Fail" />
+          <s:enumeration value="OK" />
+          <s:enumeration value="Unauthorized" />
+          <s:enumeration value="Invalid" />
+          <s:enumeration value="Duplicate" />
+          <s:enumeration value="Obsolete" />
+          <s:enumeration value="NoAccess" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:ResponseOfi360Session" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfi360Session">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="tns:i360Session" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="i360Session">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SessionID" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceUri" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVersionResult" type="tns:ResponseOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfString">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCodeVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCodeVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCodeVersionResult" type="tns:ResponseOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CurrentServerTimeSoapIn">
+    <wsdl:part name="parameters" element="tns:CurrentServerTime" />
+  </wsdl:message>
+  <wsdl:message name="CurrentServerTimeSoapOut">
+    <wsdl:part name="parameters" element="tns:CurrentServerTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCodeVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCodeVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetCodeVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCodeVersionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ConnectAPISoap">
+    <wsdl:operation name="CurrentServerTime">
+      <wsdl:input message="tns:CurrentServerTimeSoapIn" />
+      <wsdl:output message="tns:CurrentServerTimeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <wsdl:input message="tns:GetVersionSoapIn" />
+      <wsdl:output message="tns:GetVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeVersion">
+      <wsdl:input message="tns:GetCodeVersionSoapIn" />
+      <wsdl:output message="tns:GetCodeVersionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConnectAPISoap" type="tns:ConnectAPISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CurrentServerTime">
+      <soap:operation soapAction="http://i360api.imardainc.com/CurrentServerTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://i360api.imardainc.com/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <soap:operation soapAction="http://i360api.imardainc.com/GetVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeVersion">
+      <soap:operation soapAction="http://i360api.imardainc.com/GetCodeVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConnectAPISoap12" type="tns:ConnectAPISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CurrentServerTime">
+      <soap12:operation soapAction="http://i360api.imardainc.com/CurrentServerTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://i360api.imardainc.com/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <soap12:operation soapAction="http://i360api.imardainc.com/GetVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeVersion">
+      <soap12:operation soapAction="http://i360api.imardainc.com/GetCodeVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConnectAPI">
+    <wsdl:port name="ConnectAPISoap" binding="tns:ConnectAPISoap">
+      <soap:address location="http://209.81.83.141:99/14.2/connect/connect.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConnectAPISoap12" binding="tns:ConnectAPISoap12">
+      <soap12:address location="http://209.81.83.141:99/14.2/connect/connect.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

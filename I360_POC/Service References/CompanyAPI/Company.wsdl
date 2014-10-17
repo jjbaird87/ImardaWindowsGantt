@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://i360api.imarda.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://i360api.imarda.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://i360api.imarda.com/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyResult" type="tns:ResponseOfi360Company" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfi360Company">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="tns:i360Company" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ResponseCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Fail" />
+          <s:enumeration value="OK" />
+          <s:enumeration value="Unauthorized" />
+          <s:enumeration value="Invalid" />
+          <s:enumeration value="Duplicate" />
+          <s:enumeration value="Obsolete" />
+          <s:enumeration value="NoAccess" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="i360Company">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateModified" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Path" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsTemplate" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Deleted" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContactType" type="tns:i360ContactType" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suburb" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LinkID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TimeZone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreferredUnitSystem" type="tns:i360UnitSystem" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomUnits" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MasterPassword" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnlockCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AutoLogoffPeriod" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GracePeriod" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FatigueRuleDefault" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NrFleets" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NrUsers" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NrVehicles" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="i360ContactType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Customer" />
+          <s:enumeration value="MobilePhoneCustomer" />
+          <s:enumeration value="Reseller" />
+          <s:enumeration value="Franchisee" />
+          <s:enumeration value="Agency" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="i360UnitSystem">
+        <s:restriction base="s:string">
+          <s:enumeration value="Regional" />
+          <s:enumeration value="Metric" />
+          <s:enumeration value="USCustomary" />
+          <s:enumeration value="Imperial" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetCompanyList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyListResult" type="tns:ResponseOfListOfi360Company" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfListOfi360Company">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="tns:ArrayOfI360Company" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfI360Company">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="i360Company" nillable="true" type="tns:i360Company" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCompanyExtent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="filter" type="tns:i360CompanyFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="i360CompanyFilter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Conditions" type="tns:ArrayOfI360Condition" />
+          <s:element minOccurs="0" maxOccurs="1" name="SortColumns" type="tns:ArrayOfI360SortColumn" />
+          <s:element minOccurs="1" maxOccurs="1" name="Scope" type="tns:i360Scope" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Deleted" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Template" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Limit" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Offset" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LogicalOperator" type="tns:i360LogicalOperator" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfI360Condition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="i360Condition" nillable="true" type="tns:i360Condition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="i360Condition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:i360ConditionOperator" />
+          <s:element minOccurs="0" maxOccurs="1" name="SearchValue" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldType" type="tns:i360FieldType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubConditions" type="tns:ArrayOfI360Condition" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubLogicalOperator" type="tns:i360LogicalOperator" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="i360ConditionOperator">
+        <s:restriction base="s:string">
+          <s:enumeration value="Equal" />
+          <s:enumeration value="NotEqual" />
+          <s:enumeration value="GreaterThan" />
+          <s:enumeration value="LessThan" />
+          <s:enumeration value="GreaterThanOrEqualTo" />
+          <s:enumeration value="LessThanOrEqualTo" />
+          <s:enumeration value="Between" />
+          <s:enumeration value="NotBetween" />
+          <s:enumeration value="Contains" />
+          <s:enumeration value="NotContains" />
+          <s:enumeration value="BeginsWith" />
+          <s:enumeration value="EndsWith" />
+          <s:enumeration value="IsNull" />
+          <s:enumeration value="NotIsNull" />
+          <s:enumeration value="IsEmpty" />
+          <s:enumeration value="NotIsEmpty" />
+          <s:enumeration value="In" />
+          <s:enumeration value="NotIn" />
+          <s:enumeration value="Regex" />
+          <s:enumeration value="Wildcard" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="i360FieldType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Text" />
+          <s:enumeration value="Numeric" />
+          <s:enumeration value="Boolean" />
+          <s:enumeration value="Date" />
+          <s:enumeration value="Guid" />
+          <s:enumeration value="Enum" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="i360LogicalOperator">
+        <s:restriction base="s:string">
+          <s:enumeration value="And" />
+          <s:enumeration value="Or" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfI360SortColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="i360SortColumn" nillable="true" type="tns:i360SortColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="i360SortColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SortDescending" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="i360Scope">
+        <s:restriction base="s:string">
+          <s:enumeration value="CompanyAllocated" />
+          <s:enumeration value="DirectCustomers" />
+          <s:enumeration value="AllManageable" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetCompanyExtentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyExtentResult" type="tns:ResponseOfListOfi360Company" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="company" type="tns:i360Company" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveCompanyResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveCompanyList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyList" type="tns:ArrayOfI360Company" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveCompanyListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveCompanyListResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteCompanyResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="company" type="tns:i360Company" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActivateCompanyResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeactivateCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="company" type="tns:i360Company" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeactivateCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeactivateCompanyResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMyCompanyID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMyCompanyIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMyCompanyIDResult" type="tns:ResponseOfGuid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfGuid">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s1:guid" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="VerifyIfUnique">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sessionID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyIfUniqueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerifyIfUniqueResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mobileNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegisterCompanyResult" type="tns:ResponseOfGuid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnlockCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnlockCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UnlockCompanyResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVersionResult" type="tns:ResponseOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfString">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCodeVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCodeVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCodeVersionResult" type="tns:ResponseOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompany" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyList" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyExtentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyExtent" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyExtentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyExtentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:SaveCompany" />
+  </wsdl:message>
+  <wsdl:message name="SaveCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:SaveCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveCompanyListSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveCompanyList" />
+  </wsdl:message>
+  <wsdl:message name="SaveCompanyListSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveCompanyListResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteCompany" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActivateCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:ActivateCompany" />
+  </wsdl:message>
+  <wsdl:message name="ActivateCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:ActivateCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeactivateCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:DeactivateCompany" />
+  </wsdl:message>
+  <wsdl:message name="DeactivateCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:DeactivateCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMyCompanyIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMyCompanyID" />
+  </wsdl:message>
+  <wsdl:message name="GetMyCompanyIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMyCompanyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyIfUniqueSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyIfUnique" />
+  </wsdl:message>
+  <wsdl:message name="VerifyIfUniqueSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyIfUniqueResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterCompany" />
+  </wsdl:message>
+  <wsdl:message name="RegisterCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="UnlockCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:UnlockCompany" />
+  </wsdl:message>
+  <wsdl:message name="UnlockCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:UnlockCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCodeVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCodeVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetCodeVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCodeVersionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CompanyAPISoap">
+    <wsdl:operation name="GetCompany">
+      <wsdl:input message="tns:GetCompanySoapIn" />
+      <wsdl:output message="tns:GetCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyList">
+      <wsdl:input message="tns:GetCompanyListSoapIn" />
+      <wsdl:output message="tns:GetCompanyListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyExtent">
+      <wsdl:input message="tns:GetCompanyExtentSoapIn" />
+      <wsdl:output message="tns:GetCompanyExtentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCompany">
+      <wsdl:input message="tns:SaveCompanySoapIn" />
+      <wsdl:output message="tns:SaveCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCompanyList">
+      <wsdl:input message="tns:SaveCompanyListSoapIn" />
+      <wsdl:output message="tns:SaveCompanyListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCompany">
+      <wsdl:input message="tns:DeleteCompanySoapIn" />
+      <wsdl:output message="tns:DeleteCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateCompany">
+      <wsdl:input message="tns:ActivateCompanySoapIn" />
+      <wsdl:output message="tns:ActivateCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateCompany">
+      <wsdl:input message="tns:DeactivateCompanySoapIn" />
+      <wsdl:output message="tns:DeactivateCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyCompanyID">
+      <wsdl:input message="tns:GetMyCompanyIDSoapIn" />
+      <wsdl:output message="tns:GetMyCompanyIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyIfUnique">
+      <wsdl:input message="tns:VerifyIfUniqueSoapIn" />
+      <wsdl:output message="tns:VerifyIfUniqueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterCompany">
+      <wsdl:input message="tns:RegisterCompanySoapIn" />
+      <wsdl:output message="tns:RegisterCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnlockCompany">
+      <wsdl:input message="tns:UnlockCompanySoapIn" />
+      <wsdl:output message="tns:UnlockCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <wsdl:input message="tns:GetVersionSoapIn" />
+      <wsdl:output message="tns:GetVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeVersion">
+      <wsdl:input message="tns:GetCodeVersionSoapIn" />
+      <wsdl:output message="tns:GetCodeVersionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CompanyAPISoap" type="tns:CompanyAPISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCompany">
+      <soap:operation soapAction="http://i360api.imarda.com/GetCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyList">
+      <soap:operation soapAction="http://i360api.imarda.com/GetCompanyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyExtent">
+      <soap:operation soapAction="http://i360api.imarda.com/GetCompanyExtent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCompany">
+      <soap:operation soapAction="http://i360api.imarda.com/SaveCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCompanyList">
+      <soap:operation soapAction="http://i360api.imarda.com/SaveCompanyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCompany">
+      <soap:operation soapAction="http://i360api.imarda.com/DeleteCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateCompany">
+      <soap:operation soapAction="http://i360api.imarda.com/ActivateCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateCompany">
+      <soap:operation soapAction="http://i360api.imarda.com/DeactivateCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyCompanyID">
+      <soap:operation soapAction="http://i360api.imarda.com/GetMyCompanyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyIfUnique">
+      <soap:operation soapAction="http://i360api.imarda.com/VerifyIfUnique" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterCompany">
+      <soap:operation soapAction="http://i360api.imarda.com/RegisterCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnlockCompany">
+      <soap:operation soapAction="http://i360api.imarda.com/UnlockCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <soap:operation soapAction="http://i360api.imarda.com/GetVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeVersion">
+      <soap:operation soapAction="http://i360api.imarda.com/GetCodeVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CompanyAPISoap12" type="tns:CompanyAPISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCompany">
+      <soap12:operation soapAction="http://i360api.imarda.com/GetCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyList">
+      <soap12:operation soapAction="http://i360api.imarda.com/GetCompanyList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyExtent">
+      <soap12:operation soapAction="http://i360api.imarda.com/GetCompanyExtent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCompany">
+      <soap12:operation soapAction="http://i360api.imarda.com/SaveCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCompanyList">
+      <soap12:operation soapAction="http://i360api.imarda.com/SaveCompanyList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCompany">
+      <soap12:operation soapAction="http://i360api.imarda.com/DeleteCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateCompany">
+      <soap12:operation soapAction="http://i360api.imarda.com/ActivateCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateCompany">
+      <soap12:operation soapAction="http://i360api.imarda.com/DeactivateCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyCompanyID">
+      <soap12:operation soapAction="http://i360api.imarda.com/GetMyCompanyID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyIfUnique">
+      <soap12:operation soapAction="http://i360api.imarda.com/VerifyIfUnique" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterCompany">
+      <soap12:operation soapAction="http://i360api.imarda.com/RegisterCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnlockCompany">
+      <soap12:operation soapAction="http://i360api.imarda.com/UnlockCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <soap12:operation soapAction="http://i360api.imarda.com/GetVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeVersion">
+      <soap12:operation soapAction="http://i360api.imarda.com/GetCodeVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CompanyAPI">
+    <wsdl:port name="CompanyAPISoap" binding="tns:CompanyAPISoap">
+      <soap:address location="http://209.81.83.141:99/14.2/company/Company.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CompanyAPISoap12" binding="tns:CompanyAPISoap12">
+      <soap12:address location="http://209.81.83.141:99/14.2/company/Company.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

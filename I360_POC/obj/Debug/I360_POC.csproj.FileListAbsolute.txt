@@ -1,0 +1,16 @@
+D:\GitHub Source\I360WinFormsTest\I360_POC\bin\Debug\I360_POC.exe
+D:\GitHub Source\I360WinFormsTest\I360_POC\bin\Debug\I360_POC.pdb
+D:\GitHub Source\I360WinFormsTest\I360_POC\obj\Debug\I360_POC.csprojResolveAssemblyReference.cache
+D:\GitHub Source\I360WinFormsTest\I360_POC\obj\Debug\I360_POC.Form1.resources
+D:\GitHub Source\I360WinFormsTest\I360_POC\obj\Debug\I360_POC.Properties.Resources.resources
+D:\GitHub Source\I360WinFormsTest\I360_POC\obj\Debug\I360_POC.csproj.GenerateResource.Cache
+D:\GitHub Source\I360WinFormsTest\I360_POC\obj\Debug\I360_POC.exe.licenses
+D:\GitHub Source\I360WinFormsTest\I360_POC\obj\Debug\I360_POC.exe
+D:\GitHub Source\I360WinFormsTest\I360_POC\obj\Debug\I360_POC.pdb
+D:\GitHub Source\I360WinFormsTest\I360_POC\bin\Debug\I360_POC.exe.config
+D:\GitHub Source\I360WinFormsTest\I360_POC\obj\Debug\I360_POC.frmI360Report.resources
+D:\GitHub Source\I360WinFormsTest\I360_POC\bin\Debug\JetBrains.Annotations.dll
+D:\GitHub Source\I360WinFormsTest\I360_POC\bin\Debug\JetBrains.Annotations.xml
+D:\GitHub Source\I360WinFormsTest\I360_POC\bin\Debug\Data\scheduleStorage.mdf
+D:\GitHub Source\I360WinFormsTest\I360_POC\bin\Debug\Data\scheduleStorage_log.ldf
+D:\GitHub Source\I360WinFormsTest\I360_POC\obj\Debug\I360_POC.FrmGant.resources

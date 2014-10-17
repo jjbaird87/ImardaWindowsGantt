@@ -1,0 +1,8 @@
+D:\GitHub Source\I360WinFormsTest\I360WinFormsTest\bin\Debug\I360WinFormsTest.exe
+D:\GitHub Source\I360WinFormsTest\I360WinFormsTest\bin\Debug\I360WinFormsTest.pdb
+D:\GitHub Source\I360WinFormsTest\I360WinFormsTest\obj\Debug\I360WinFormsTest.csprojResolveAssemblyReference.cache
+D:\GitHub Source\I360WinFormsTest\I360WinFormsTest\obj\Debug\I360WinFormsTest.Properties.Resources.resources
+D:\GitHub Source\I360WinFormsTest\I360WinFormsTest\obj\Debug\I360WinFormsTest.csproj.GenerateResource.Cache
+D:\GitHub Source\I360WinFormsTest\I360WinFormsTest\obj\Debug\I360WinFormsTest.exe.licenses
+D:\GitHub Source\I360WinFormsTest\I360WinFormsTest\obj\Debug\I360WinFormsTest.exe
+D:\GitHub Source\I360WinFormsTest\I360WinFormsTest\obj\Debug\I360WinFormsTest.pdb
